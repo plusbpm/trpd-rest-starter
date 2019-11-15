@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ../
+      dockerfile: ./docker/backend/Dockerfile
+
+  react:
+    build:
+      context: ../
+      dockerfile: ./docker/react/Dockerfile
+    links:
+      - backend
+
+  nginx:
+    env_file:
+      - .env.example
+    build:
+      context: ../
+      dockerfile: ./docker/nginx/Dockerfile
+    links:
+      - backend
+      - react
+    ports:
+      - 80:80

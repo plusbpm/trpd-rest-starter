@@ -1,0 +1,9 @@
+analyze
+.env
+.eslintrc
+.git
+.gitignore
+.next
+node_modules
+.prettierrc
+.tmp
