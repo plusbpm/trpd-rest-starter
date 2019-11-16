@@ -1,10 +1,10 @@
 ## Usage
 
-Clone rep and got to created dir
+Clone rep and go to created dir
 
 ```shell
-git clone git@github.com:plusbpm/nextjs-rest-mongodb.git
-cd nextjs-rest-mongodb
+git clone git@github.com:plusbpm/trpd-rest-starter.git
+cd trpd-rest-starter
 ```
 
 Install  packages
@@ -12,28 +12,31 @@ Install  packages
 npm install
 ```
 
-Run development (need docker installed for mongo start):
+Run development:
 
 ```shell
 npm run dev
 ```
 
-Run production (need docker installed for mongo start):
+Run production:
 
 ```shell
 npm run start
 ```
 
-Start/stop with docker-compose:
+docker-compose control:
 
 ```shell
+npm run docker_build
 npm run docker_up
 npm run docker_stop
+npm run docker_down
 ```
 
 ## Application environment
 	.env.example - default and needed variables
 	.env - current variables
+	docker/.env.example - environment for docker-compose containers
 
 ## License
 
