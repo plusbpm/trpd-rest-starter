@@ -2,11 +2,13 @@ version: '3'
 
 services:
   backend:
+    container_name: trpd_backend
     build:
       context: ../
       dockerfile: ./docker/backend/Dockerfile
 
   react:
+    container_name: trpd_react
     build:
       context: ../
       dockerfile: ./docker/react/Dockerfile
@@ -14,8 +16,7 @@ services:
       - backend
 
   nginx:
-    env_file:
-      - .env.example
+    container_name: trpd_nginx
     build:
       context: ../
       dockerfile: ./docker/nginx/Dockerfile
@@ -23,4 +24,4 @@ services:
       - backend
       - react
     ports:
-      - 80:80
+      - 3000:80

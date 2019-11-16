@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-rest-starter",
+  "name": "trpd_rest_starter",
   "version": "0.0.1",
   "main": "server.js",
   "engines": {
@@ -64,7 +64,7 @@
     "prettier": "^1.19.1",
     "supervisor": "^0.12.0"
   },
-  "description": "Starter kit for using nextjs and rest client",
+  "description": "Starter kit for using nextjs and rest client with db adapter",
   "license": "MIT",
-  "repository": "git@gitlab.com:plusbpm/nextjs-rest-starter.git"
+  "repository": "git@github.com:plusbpm/trpd-rest-starter.git"
 }
