@@ -1,7 +1,12 @@
 #!/bin/sh
 
-envsubst "`for v in $(env | awk -F '=' '{ print $1 }');do printf '${%s} ' $v;done`" < /etc/nginx/nginx.template.conf > /etc/nginx/nginx.conf
+BASE_PATH=/etc/nginx/
+ENVIRONMENT_KEYS=`for v in $(env | awk -F '=' '{ print $1 }');do printf '${%s} ' $v;done`
 
-envsubst "`for v in $(env | awk -F '=' '{ print $1 }');do printf '${%s} ' $v;done`" < /etc/nginx/proxy_backend.template.conf > /etc/nginx/proxy_backend.conf
-
-envsubst "`for v in $(env | awk -F '=' '{ print $1 }');do printf '${%s} ' $v;done`" < /etc/nginx/proxy_react.template.conf > /etc/nginx/proxy_react.conf
+for filename in nginx proxy_backend proxy_react
+do
+  SOURCE_TEMPLATE=$BASE_PATH/$filename.template.conf
+  TARGET_CONFIG=$BASE_PATH/$filename.conf
+  envsubst "$ENVIRONMENT_KEYS" < $SOURCE_TEMPLATE > $TARGET_CONFIG
+  rm -f $SOURCE_TEMPLATE
+done

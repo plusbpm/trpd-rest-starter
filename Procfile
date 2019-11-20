@@ -1,0 +1,1 @@
+web: cp heroku/.env.example .env.example; npm run copy_env_example; API_DOMAIN_FORCE=http://127.0.0.1:$PORT npm run heroku

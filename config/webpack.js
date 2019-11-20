@@ -6,7 +6,7 @@ const pick = require('lodash/pick');
 
 const pickKeys = ['API_ROOT', 'WEBSOCKET_ROOT'];
 const publicKeys = pick(process.env, pickKeys);
-const { API_DOMAIN_CLIENT, API_DOMAIN_SERVER } = process.env;
+const { API_DOMAIN, API_DOMAIN_CLIENT, API_DOMAIN_SERVER } = process.env;
 
 module.exports = (config, { isServer }) =>
   merge(
@@ -14,7 +14,7 @@ module.exports = (config, { isServer }) =>
       plugins: [
         new EnvironmentPlugin({
           ...publicKeys,
-          API_DOMAIN: isServer ? API_DOMAIN_SERVER : API_DOMAIN_CLIENT,
+          API_DOMAIN: API_DOMAIN || (isServer ? API_DOMAIN_SERVER : API_DOMAIN_CLIENT),
         }),
       ],
     },

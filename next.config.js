@@ -1,12 +1,12 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
-const flow = require('lodash/flow');
+/* eslint-disable import/no-extraneous-dependencies, no-empty, global-require */
+let withBundleAnalyzer = config => config;
+try {
+  withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
+} catch (error) {}
 
 const handleWebpackConfig = require('./config/webpack.js');
 
-const enhance = flow(withBundleAnalyzer);
-
-module.exports = enhance({
+module.exports = withBundleAnalyzer({
   analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
   analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
   bundleAnalyzerConfig: {

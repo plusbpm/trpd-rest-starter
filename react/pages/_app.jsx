@@ -23,6 +23,12 @@ export default class MyApp extends App {
     const { cookie } = ctx.req ? ctx.req.headers : {};
     const restClient = createClient({ globalSendOptions: { headers: { cookie } } });
 
+    const sessionInquery = restClient.getInquery('session', {
+      endpoint: '/session',
+      refetchOnReconnect: true,
+    });
+    if (!sessionInquery.get('data')) await sessionInquery.send();
+
     const pageProps =
       (Component.getInitialProps && (await Component.getInitialProps({ ...ctx, restClient }))) ||
       {};

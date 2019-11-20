@@ -37,6 +37,7 @@ npm run docker_down
 	.env.example - default and needed variables
 	.env - current variables
 	docker/.env.example - environment for docker-compose containers
+	heroku/.env.example - environment for heroku deployment
 
 ## License
 
