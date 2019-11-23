@@ -37,4 +37,6 @@ async function setup(server) {
     });
 }
 
-raiseServer(setup, 'PORT_BACKEND');
+if (require.main === module) raiseServer(setup, 'PORT_BACKEND');
+
+module.exports = setup;

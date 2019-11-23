@@ -12,4 +12,6 @@ async function setup(server) {
   server.get('*', async ({ raw }, { res }) => nextHandle(raw, res));
 }
 
-raiseServer(setup, 'PORT_REACT');
+if (require.main === module) raiseServer(setup, 'PORT_REACT');
+
+module.exports = setup;
