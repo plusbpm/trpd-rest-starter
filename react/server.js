@@ -1,6 +1,6 @@
 require('../config/dotenv');
-const next = require('next');
 
+const next = require('next');
 const raiseServer = require('../shared/util/raiseServer');
 
 const dev = process.env.NODE_ENV !== 'production';

@@ -11,20 +11,18 @@
     "build": "next build ./react",
     "backend:pro": "node ./back-end/server.js",
     "backend:dev": "npx supervisor -n -t -w back-end,.env,shared,next.config.js ./back-end/server.js",
-    "copy_env_example": "[ ! -e .env ] && cp .env.example .env; exit 0",
     "dev": "run-p -l backend:dev react",
     "docker_build": "docker-compose -f docker/docker-compose.yml build",
     "docker_up": "docker-compose -f docker/docker-compose.yml up -d",
     "docker_stop": "docker-compose -f docker/docker-compose.yml stop",
     "docker_down": "docker-compose -f docker/docker-compose.yml down",
     "lint": "eslint back-end config react shared --ext .js,.jsx",
-    "prebuild": "npm run copy_env_example",
-    "predev": "npm run copy_env_example",
     "prestart": "run-s lint build",
     "react": "node ./react/server.js",
     "start": "NODE_ENV=production run-p -l backend:pro react",
     "upgrade:deps": "npx ncu -u",
-    "heroku": "node heroku/server.js"
+    "heroku": "API_DOMAIN_SERVER=http://127.0.0.1:$PORT CONFIG_FOLDER=heroku node heroku/server.js",
+    "heroku-postbuild": "CONFIG_FOLDER=heroku npm run build"
   },
   "dependencies": {
     "ajv": "^6.10.2",

@@ -3,11 +3,10 @@ import RestClient from './RestClient';
 let restClientSingltone;
 
 const apiRoot = process.env.API_ROOT;
-const apiDomain = process.env.API_DOMAIN;
-const apiDomainForce = process.env.API_DOMAIN_FORCE;
+const apiDomain = process.env.API_DOMAIN_SERVER || process.env.API_DOMAIN_CLIENT;
 
 function createClient(options) {
-  const nextOptions = { ...options, apiRoot: `${apiDomainForce || apiDomain}${apiRoot}` };
+  const nextOptions = { ...options, apiRoot: `${apiDomain}${apiRoot}` };
 
   if (!process.browser) {
     return new RestClient(nextOptions);

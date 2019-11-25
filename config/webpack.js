@@ -4,19 +4,13 @@ const { EnvironmentPlugin } = require('webpack');
 const merge = require('webpack-merge');
 const pick = require('lodash/pick');
 
-const pickKeys = ['API_ROOT', 'WEBSOCKET_ROOT'];
+const pickKeys = ['API_ROOT', 'WEBSOCKET_ROOT', 'API_DOMAIN_CLIENT'];
 const publicKeys = pick(process.env, pickKeys);
-const { API_DOMAIN, API_DOMAIN_CLIENT, API_DOMAIN_SERVER } = process.env;
 
-module.exports = (config, { isServer }) =>
+module.exports = config =>
   merge(
     {
-      plugins: [
-        new EnvironmentPlugin({
-          ...publicKeys,
-          API_DOMAIN: API_DOMAIN || (isServer ? API_DOMAIN_SERVER : API_DOMAIN_CLIENT),
-        }),
-      ],
+      plugins: [new EnvironmentPlugin(publicKeys)],
     },
     config,
   );
